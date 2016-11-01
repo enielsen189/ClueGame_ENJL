@@ -70,15 +70,6 @@ public class Board {
 		}
 	
 	public void initialize(){
-		loadConfigFiles();
-		calcAdjacencies();
-	}
-	
-	public BoardCell getCellAt(int row, int col){
-		return board[row][col];
-	}
-	
-	public void loadConfigFiles() {
 		try {
 			loadRoomConfig();
 			loadBoardConfig();
@@ -88,6 +79,12 @@ public class Board {
 		catch (BadConfigFormatException e) {
 			
 		}
+		
+		calcAdjacencies();
+	}
+	
+	public BoardCell getCellAt(int row, int col){
+		return board[row][col];
 	}
 	
 	public void loadRoomConfig() throws BadConfigFormatException{
