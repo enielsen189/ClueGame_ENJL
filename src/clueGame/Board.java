@@ -403,24 +403,24 @@ public class Board {
 			id = suggestion.accuserId + 1;
 		}
 		int i = id +1;
-		Card resolution = null;
+		Card solutionCheck = null;
 		//Players to go in order and look in their own hands for the card
 		while (id != suggestion.accuserId) {
 			if (id == -1) {
-				resolution = player.disproveSuggestion(suggestion);
+				solutionCheck = player.disproveSuggestion(suggestion);
 			}
 			else {
-				resolution = comp.get(id).disproveSuggestion(suggestion);
+				solutionCheck = comp.get(id).disproveSuggestion(suggestion);
 			}
-			if (resolution != null) {
-				return resolution;
+			if (solutionCheck != null) {
+				return solutionCheck;
 			}
 			i++;
 			id = (i % (comp.size() + 1)) - 1;
 		}
 		//If card not in player hand, move to next player
 		//P--1--2--3--4--5--P
-		return resolution;
+		return solutionCheck;
 	}
 	
 	public boolean checkAccusation(Solution accusation) {
