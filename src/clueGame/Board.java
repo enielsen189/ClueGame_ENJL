@@ -87,7 +87,7 @@ public class Board {
 		return board[row][col];
 	}
 	
-	private void loadRoomConfig() throws BadConfigFormatException{
+	public void loadRoomConfig() throws BadConfigFormatException{
 		roomCards = new ArrayList<Card>();
 		try{
 			FileReader input = new FileReader(roomConfigFile);
@@ -112,7 +112,7 @@ public class Board {
 		
 	}
 	
-	private void loadBoardConfig() throws BadConfigFormatException{
+	public void loadBoardConfig() throws BadConfigFormatException{
 		try{ 
 			for (int i = 0; i < MAX_BOARD_SIZE; i++){
 				for (int j = 0; j < MAX_BOARD_SIZE; j++){
