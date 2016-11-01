@@ -129,11 +129,13 @@ public class Board {
 			String newRow = in.nextLine();
 			String[] splitRows = newRow.split(",");
 			
-			if(numRows == 0){
+			if(numRows == 0) {
 				rowLength = splitRows.length;
 			}
 			//CHECK THIS STATEMENT
-			if (numColumns == 0) numColumns = splitRows.length;
+			if (numColumns == 0) {
+				numColumns = splitRows.length;
+			}
 			
 			if(splitRows.length != numColumns){
 				throw new BadConfigFormatException("Incorrect number of Columns");
@@ -153,7 +155,6 @@ public class Board {
 					switch (dir){
 					case 'D':
 						board[numRows][i].direction = DoorDirection.DOWN;
-						
 						break;
 					case 'U':
 						board[numRows][i].direction = DoorDirection.UP;
@@ -174,6 +175,7 @@ public class Board {
 
 		} //end of while loop
 		in.close();
+		
 		BoardCell [][] tempArray = new BoardCell[numRows][rowLength];
 		for(int i = 0; i < numRows; i++){
 			for (int j = 0; j < rowLength; j++){
@@ -208,13 +210,13 @@ public class Board {
 					player.id = -1;
 				}
 				else if(splitPieces[4].equals("C")) {
-					ComputerPlayer C1 = new ComputerPlayer();
-					C1.setName(splitPieces[0]);
-					C1.setColor(convertColor(splitPieces[1]));
-					C1.setRow(Integer.parseInt(splitPieces[2]));
-					C1.setColumn(Integer.parseInt(splitPieces[3]));
-					C1.id = idCounter;
-					comp.add(C1);
+					ComputerPlayer tempComputer = new ComputerPlayer();
+					tempComputer.setName(splitPieces[0]);
+					tempComputer.setColor(convertColor(splitPieces[1]));
+					tempComputer.setRow(Integer.parseInt(splitPieces[2]));
+					tempComputer.setColumn(Integer.parseInt(splitPieces[3]));
+					tempComputer.id = idCounter;
+					comp.add(tempComputer);
 					idCounter++;
 				}
 				else {
