@@ -10,8 +10,8 @@ public class ComputerPlayer extends Player {
 	public Set<Card> seenPeopleCards = new HashSet<Card>();
 	public Set<Card> seenWeaponCards = new HashSet<Card>();
 	public Set<BoardCell> visitedRooms = new HashSet<BoardCell>();
-	public ArrayList<BoardCell> doorsInRange = new ArrayList<BoardCell>();
-	public ArrayList<BoardCell> totalRooms = new ArrayList<BoardCell>();
+	private ArrayList<BoardCell> doorsInRange = new ArrayList<BoardCell>();
+	private ArrayList<BoardCell> totalRooms = new ArrayList<BoardCell>();
 	
 	
 	public BoardCell pickLocation(Set<BoardCell> targets) {
