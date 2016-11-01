@@ -248,10 +248,10 @@ public class Board {
 	}
 	
 	public void calcAdjacencies(){
-		int x = board[0].length;
-		int y = board.length;
-		for (int i = 0; i < y; i++){
-			for (int j = 0; j < x; j++){
+		int column = board[0].length;
+		int row = board.length;
+		for (int i = 0; i < row; i++){
+			for (int j = 0; j < column; j++){
 				Set<BoardCell> adj = new HashSet<BoardCell>();
 				if (board[i][j].initial != 'W'){ 
 					if (board[i][j].isDoorway() == false){
@@ -285,7 +285,7 @@ public class Board {
 						adj.add(board[i-1][j]);
 					}
 				}
-				if (i + 1 < y){
+				if (i + 1 < row){
 					if((board[i+1][j].isDoorway() && board[i+1][j].direction == DoorDirection.UP)|| board[i+1][j].initial == 'W'){
 						adj.add(board[i +1][j]);
 					}
@@ -295,7 +295,7 @@ public class Board {
 						adj.add(board[i][j-1]);
 					}
 				}
-				if (j + 1 < x){
+				if (j + 1 < column){
 					if((board[i][j+1].isDoorway() && board[i][j+1].direction == DoorDirection.LEFT)|| board[i][j+1].initial == 'W'){
 						adj.add(board[i][j+1]);
 					}
