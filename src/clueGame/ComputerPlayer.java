@@ -34,29 +34,41 @@ public class ComputerPlayer extends Player {
 			}
 		}
 		
-		else if(doorsInRange.size() > 1) {
-			if((visitedRooms.contains(doorsInRange.get(0)) && (visitedRooms.contains(doorsInRange.get(1))))) {
-				for (BoardCell c: targets) {
-					allLocations.add(c);		//all targets should be in totalRooms
+		else if(doorsInRange.size() > 1) {		//if there is more than 1 door that the computer player can get through, check to see which ones have been visited before
+			boolean doesContain = true;
+			for (int i = 0; i < doorsInRange.size(); i++) {
+				if (visitedRooms.contains(doorsInRange.get(i))) {
+					//do nothing, continue through the loop
+				}
+				else {
+					doesContain = false;
 				}
 			}
-			else if(visitedRooms.contains(doorsInRange.get(0))) {
+			if(doesContain) {	//if all of doorsInRange is included in visitedRooms, add all of the targets to allLocations
+				for (BoardCell c: targets) {
+					allLocations.add(c);		//if both rooms have been visited before, 
+				}
+			}
+			//This next part MUST assume that there are only 2 doors in range, otherwise other else if statements must be added
+			else if(visitedRooms.contains(doorsInRange.get(0))) {		//if only one door has been visited, add the OTHER one to the allLocations
 				allLocations.add(doorsInRange.get(1));
 			}
 			else if(visitedRooms.contains(doorsInRange.get(1))) {
 				allLocations.add(doorsInRange.get(0));
 			}
-			else {
+			else {		//Will enter this if neither door has been entered. In that case, add both of them to allLocations
 				allLocations.add(doorsInRange.get(0));
 				allLocations.add(doorsInRange.get(1));
 			}
 		}
 		
-		else {
+		else {		//if the size of doorsInRange is not 1 or greater than 1 (ie: there are no doors within reach of the player), add all locations to allLocations
 			for (BoardCell c: targets) {
-				allLocations.add(c);		//all targets should be in totalRooms
+				allLocations.add(c);		//all targets should be in allLocations
 			}
 		}
+		//Pick randomly from allLocations to get a cell to return. If there is only one item in allLocations, it will 'randomly' pick that one point since it is
+		//the only point to pick from. However, if more than one point is in allLocations, one point is randomly chosen from the entire array.
 		Random rand = new Random();
 		BoardCell returnCell = allLocations.get(rand.nextInt(allLocations.size()));
 		row = returnCell.row;
