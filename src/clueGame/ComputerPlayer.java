@@ -11,26 +11,25 @@ public class ComputerPlayer extends Player {
 	public Set<Card> seenWeaponCards = new HashSet<Card>();
 	public Set<BoardCell> visitedRooms = new HashSet<BoardCell>();
 	private ArrayList<BoardCell> doorsInRange = new ArrayList<BoardCell>();
-	private ArrayList<BoardCell> totalRooms = new ArrayList<BoardCell>();
+	private ArrayList<BoardCell> allLocations = new ArrayList<BoardCell>();
 	
 	
 	public BoardCell pickLocation(Set<BoardCell> targets) {
 		doorsInRange.clear();
-		totalRooms.clear();
+		allLocations.clear();
 		for (BoardCell bc : targets) {
 			if (bc.isDoorway()) {
 				doorsInRange.add(bc);
 			}
 		}
 		
-		if (doorsInRange.size() == 1) {
-			if (!visitedRooms.contains(doorsInRange.get(0))) {
-				//set player location
-				totalRooms.add(doorsInRange.get(0));
+		if (doorsInRange.size() == 1) {		//Only 1 door that the computer player could get through
+			if (!visitedRooms.contains(doorsInRange.get(0))) {	//if the player has not visited this room before, add it to totalRooms
+				allLocations.add(doorsInRange.get(0));
 			}
 			else {
 				for (BoardCell c: targets) {
-					totalRooms.add(c);		//all targets should be in totalRooms
+					allLocations.add(c);							//if the player has visited this room before, all the targets should be added to allLocations so that they can all be randomly selected from
 				}
 			}
 		}
@@ -38,28 +37,28 @@ public class ComputerPlayer extends Player {
 		else if(doorsInRange.size() > 1) {
 			if((visitedRooms.contains(doorsInRange.get(0)) && (visitedRooms.contains(doorsInRange.get(1))))) {
 				for (BoardCell c: targets) {
-					totalRooms.add(c);		//all targets should be in totalRooms
+					allLocations.add(c);		//all targets should be in totalRooms
 				}
 			}
 			else if(visitedRooms.contains(doorsInRange.get(0))) {
-				totalRooms.add(doorsInRange.get(1));
+				allLocations.add(doorsInRange.get(1));
 			}
 			else if(visitedRooms.contains(doorsInRange.get(1))) {
-				totalRooms.add(doorsInRange.get(0));
+				allLocations.add(doorsInRange.get(0));
 			}
 			else {
-				totalRooms.add(doorsInRange.get(0));
-				totalRooms.add(doorsInRange.get(1));
+				allLocations.add(doorsInRange.get(0));
+				allLocations.add(doorsInRange.get(1));
 			}
 		}
 		
 		else {
 			for (BoardCell c: targets) {
-				totalRooms.add(c);		//all targets should be in totalRooms
+				allLocations.add(c);		//all targets should be in totalRooms
 			}
 		}
 		Random rand = new Random();
-		BoardCell returnCell = totalRooms.get(rand.nextInt(totalRooms.size()));
+		BoardCell returnCell = allLocations.get(rand.nextInt(allLocations.size()));
 		row = returnCell.row;
 		column = returnCell.column;
 		return returnCell;
