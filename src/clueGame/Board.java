@@ -50,13 +50,13 @@ public class Board {
 	
 	//This function has had "people" and "weapons" added, you'll need to update this call in previous tests
 	public void setConfigFiles(String layout, String legend){
-		roomConfigFile = legend;
-		boardConfigFile = layout;
+		roomConfigFile = legend;	//The legend associated with the rooms in the .csv file
+		boardConfigFile = layout;	//The .csv file which outlines the shape of the room and which rooms are where
 	}
 	
 	public void setWPConfigFiles(String people, String weapons) {
-		playerConfigFile = people;
-		weaponConfigFile = weapons;
+		playerConfigFile = people;	//The .txt file outlining the different people
+		weaponConfigFile = weapons;	//The .txt file outlining the different weapons
 	}
 	
 	
