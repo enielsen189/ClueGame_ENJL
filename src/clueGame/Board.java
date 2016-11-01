@@ -87,7 +87,7 @@ public class Board {
 		return board[row][col];
 	}
 	
-	public void loadRoomConfig() throws BadConfigFormatException{
+	private void loadRoomConfig() throws BadConfigFormatException{
 		roomCards = new ArrayList<Card>();
 		try{
 			FileReader input = new FileReader(roomConfigFile);
@@ -112,7 +112,7 @@ public class Board {
 		
 	}
 	
-	public void loadBoardConfig() throws BadConfigFormatException{
+	private void loadBoardConfig() throws BadConfigFormatException{
 		try{ 
 			for (int i = 0; i < MAX_BOARD_SIZE; i++){
 				for (int j = 0; j < MAX_BOARD_SIZE; j++){
@@ -191,7 +191,7 @@ public class Board {
 		}
 	}
 	
-	public void loadPlayerConfig() throws BadConfigFormatException {
+	private void loadPlayerConfig() throws BadConfigFormatException {
 		int idCounter = 0;
 		personCards = new ArrayList<Card>();
 		try{
@@ -231,7 +231,7 @@ public class Board {
 		}
 	}
 	
-	public void loadWeaponConfig() {
+	private void loadWeaponConfig() {
 		weaponCards = new ArrayList<Card>();
 		try{
 			FileReader input = new FileReader(weaponConfigFile);
@@ -247,7 +247,7 @@ public class Board {
 		}
 	}
 	
-	public void calcAdjacencies(){
+	private void calcAdjacencies(){
 		int column = board[0].length;
 		int row = board.length;
 		for (int i = 0; i < row; i++){
@@ -314,7 +314,7 @@ public class Board {
 		findAllTargets(row, column, pathLength);
 	}
 	
-	public void findAllTargets(int row, int col, int pathLength){
+	private void findAllTargets(int row, int col, int pathLength){
 		Set<BoardCell> adjCells = getAdjList(row, col);
 
 		for (BoardCell adjCell : adjCells) {
@@ -452,7 +452,7 @@ public class Board {
 		return targets;
 	}
 	
-	public Color convertColor(String strColor) {
+	private Color convertColor(String strColor) {
 		Color color;
 		try {
 			Field field = Class.forName("java.awt.Color").getField(strColor.trim());
