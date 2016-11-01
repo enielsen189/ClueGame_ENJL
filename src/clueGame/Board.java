@@ -173,6 +173,7 @@ public class Board {
 			numRows++;
 
 		} //end of while loop
+		in.close();
 		BoardCell [][] tempArray = new BoardCell[numRows][rowLength];
 		for(int i = 0; i < numRows; i++){
 			for (int j = 0; j < rowLength; j++){
