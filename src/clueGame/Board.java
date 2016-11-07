@@ -16,6 +16,7 @@ import java.util.Set;
 import javax.swing.JPanel;
 
 import java.awt.Color;
+import java.awt.Graphics;
 
 public class Board extends JPanel{
 	public int numRows = 0;
@@ -464,5 +465,15 @@ public class Board extends JPanel{
 			color = null;
 		}
 		return color;
+	}
+	
+	// Method to draw the board
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		for(int i=0; i<numRows; i++){
+			for(int j=0; j<numColumns; j++){
+				board[i][j].draw(g);
+			}
+		}
 	}
 }
