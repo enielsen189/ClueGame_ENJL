@@ -9,8 +9,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-public class GUI extends JFrame{
-	public GUI() {
+public class ControlPanelGUI extends JFrame{
+	public ControlPanelGUI() {
 		setTitle("CLUE");
 		setSize(1000, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,7 +72,7 @@ public class GUI extends JFrame{
 	}
 	
 	public static void main(String[] args) {
-		GUI gui = new GUI();
+		ControlPanelGUI gui = new ControlPanelGUI();
 		gui.setVisible(true);
 		
 	}
