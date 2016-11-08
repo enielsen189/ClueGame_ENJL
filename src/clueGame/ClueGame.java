@@ -21,7 +21,9 @@ public class ClueGame {
 		board.deal();
 		
 		frame.add(board,BorderLayout.CENTER);
-		
 		frame.setVisible(true);
+		
+		DetectiveNotesGUI gui = new DetectiveNotesGUI(board);
+		gui.setVisible(true);
 	}
 }
