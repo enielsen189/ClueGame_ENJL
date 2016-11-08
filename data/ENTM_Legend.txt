@@ -1,11 +1,11 @@
-H, Hangar, Card
-Q, Crew Quarters, Card
-B, Brig, Card
-L, Library, Card
-K, Kitchen, Card
-M, Mess Hall, Card
-C, Laboratory, Card
-I, Infirmary, Card
-R, Rec Room, Card
-W, Walkway, other
-X, Gravity Core, other
+H, Hangar, Card, 10, 23
+Q, Crew Quarters, Card, 2, 18
+B, Brig, Card, 16, 13
+L, Library, Card, 15, 2
+K, Kitchen, Card, 2, 5
+M, Mess Hall, Card, 2, 11
+C, Laboratory, Card, 9, 2
+I, Infirmary, Card, 17, 8
+R, Rec Room, Card, 18, 18
+W, Walkway, other, 0, 0
+X, Gravity Core, other, 0, 0

@@ -41,6 +41,8 @@ public class Board extends JPanel{
 	public Set<Card> dealtCards = new HashSet<Card>();
 	private static Solution solution = new Solution();
 	public Solution suggestion;
+	private Map<String, BoardCell> roomLabel = new HashMap<String, BoardCell>();
+	private ArrayList<String> roomList = new ArrayList<String>();
 	
 	public void setSolution(String person, String room, String weapon) {
 		solution.person = person;
@@ -100,7 +102,11 @@ public class Board extends JPanel{
 				String nextLine = in.nextLine();
 				String[] splitPieces = nextLine.split(", ");
 				rooms.put(splitPieces[0].charAt(0), splitPieces[1]);
+				roomList.add(splitPieces[1]);
 				legendInitials += splitPieces[0].charAt(0);
+				BoardCell b = new BoardCell(Integer.parseInt(splitPieces[3]), Integer.parseInt(splitPieces[4]));
+				roomLabel.put(splitPieces[1], b);
+				
 				if (splitPieces[2].equalsIgnoreCase("Card")) {
 					Card roomCard = new Card(splitPieces[1], CardType.ROOM);
 					roomCards.add(roomCard);
@@ -474,6 +480,19 @@ public class Board extends JPanel{
 			for(int j=0; j<numColumns; j++){
 				board[i][j].draw(g);
 			}
+		}
+		System.out.println("Outside of Loop");
+		System.out.println(roomList.size());
+		g.setColor(Color.BLACK);
+		for(int k = 0; k < roomList.size(); k++) {
+			//draw the label in the correct room
+			//System.out.println("Inside for Loop");
+			//System.out.println(roomList.get(k));
+			String temp = roomList.get(k);
+			BoardCell tempbc = roomLabel.get(temp);
+			int r = tempbc.row;
+			int c = tempbc.column;
+			g.drawString(temp, 40*c, 40*r);
 		}
 	}
 }

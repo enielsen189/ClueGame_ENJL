@@ -28,6 +28,12 @@ public class BoardCell {
 		super();
 	}
 	
+	public BoardCell(int row, int col){
+		super();
+		this.row = row;
+		column = col;
+	}
+	
 	@Override
 	public String toString(){
 		return "[" + row + ", " + column + "]";
@@ -53,32 +59,37 @@ public class BoardCell {
 		// Remove this line and add the color to when the board cell is read in
 		
 		if(initial == 'W'){
-			color = Color.YELLOW;}
+			color = Color.YELLOW;
+			g.setColor(color);
+			g.fillRect(CELL_LENGTH*column, CELL_LENGTH*row, CELL_LENGTH, CELL_LENGTH);
+			g.setColor(Color.BLACK);
+			g.drawRect(CELL_LENGTH*column, CELL_LENGTH*row, CELL_LENGTH, CELL_LENGTH);
+			
+			}
 		else{
-			color = Color.BLACK;
+			color = Color.GRAY;
+			
+			g.setColor(color);
+			g.fillRect(CELL_LENGTH*column, CELL_LENGTH*row, CELL_LENGTH, CELL_LENGTH);
 		}
-		g.setColor(color);
-		g.fillRect(CELL_LENGTH*column, CELL_LENGTH*row, CELL_LENGTH, CELL_LENGTH);
-		
-		g.setColor(Color.BLACK);
-		g.drawRect(CELL_LENGTH*column, CELL_LENGTH*row, CELL_LENGTH, CELL_LENGTH);
+
 		
 		if(direction != DoorDirection.NONE){
 			color = Color.BLUE;
 			g.setColor(color);
 			switch (direction){
 			case DOWN:
-				g.fillRect(column, row, DOOR_HEIGHT, DOOR_WIDTH);
+				g.fillRect(CELL_LENGTH*column, CELL_LENGTH*row+(CELL_LENGTH-DOOR_WIDTH), DOOR_HEIGHT, DOOR_WIDTH);
 				break;
 			case UP:
-				/*board[numRows][i].direction = DoorDirection.UP;
+				g.fillRect(CELL_LENGTH*column, CELL_LENGTH*row, DOOR_HEIGHT, DOOR_WIDTH);
 				break;
 			case LEFT:
-				board[numRows][i].direction = DoorDirection.LEFT;
+				g.fillRect(CELL_LENGTH*column, CELL_LENGTH*row, DOOR_WIDTH, DOOR_HEIGHT);
 				break;
 			case RIGHT:
-				board[numRows][i].direction = DoorDirection.RIGHT;
-				break;*/
+				g.fillRect(CELL_LENGTH*column+(CELL_LENGTH-DOOR_WIDTH), CELL_LENGTH*row, DOOR_WIDTH, DOOR_HEIGHT);
+				break;
 			}
 			}
 		
