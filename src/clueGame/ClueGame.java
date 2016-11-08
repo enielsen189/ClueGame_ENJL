@@ -10,7 +10,7 @@ public class ClueGame {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Clue Game Board");
 		
-		frame.setSize(1000, 840);
+		frame.setSize(1100, 860);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

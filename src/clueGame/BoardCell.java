@@ -59,7 +59,7 @@ public class BoardCell {
 		// Remove this line and add the color to when the board cell is read in
 		
 		if(initial == 'W'){
-			color = Color.YELLOW;
+			color = Color.WHITE;
 			g.setColor(color);
 			g.fillRect(CELL_LENGTH*column, CELL_LENGTH*row, CELL_LENGTH, CELL_LENGTH);
 			g.setColor(Color.BLACK);

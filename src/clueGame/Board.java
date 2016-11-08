@@ -481,18 +481,23 @@ public class Board extends JPanel{
 				board[i][j].draw(g);
 			}
 		}
-		System.out.println("Outside of Loop");
-		System.out.println(roomList.size());
+		//draw the label in the correct room
 		g.setColor(Color.BLACK);
 		for(int k = 0; k < roomList.size(); k++) {
-			//draw the label in the correct room
-			//System.out.println("Inside for Loop");
-			//System.out.println(roomList.get(k));
+			
 			String temp = roomList.get(k);
 			BoardCell tempbc = roomLabel.get(temp);
 			int r = tempbc.row;
 			int c = tempbc.column;
 			g.drawString(temp, 40*c, 40*r);
+		}
+		//draw the people in the correct starting locations
+		g.setColor(player.getColor());
+		g.fillOval(player.getColumn()*40, player.getRow()*40, 40, 40);
+		
+		for (int i = 0; i < comp.size(); i++) {
+			g.setColor(comp.get(i).getColor());
+			g.fillOval(comp.get(i).getColumn()*40, comp.get(i).getRow()*40, 40, 40);
 		}
 	}
 }
