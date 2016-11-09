@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 public class ClueGame {
 	public static Board board;
@@ -15,7 +16,7 @@ public class ClueGame {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Clue Game Board");
 		
-		frame.setSize(1100, 860);
+		frame.setSize(1500, 1000);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -37,6 +38,18 @@ public class ClueGame {
 		
 		frame.add(board,BorderLayout.CENTER);
 		frame.setVisible(true);
+		
+		//Add control panel
+		ControlPanelGUI controlGui = new ControlPanelGUI();
+		frame.add(controlGui, BorderLayout.SOUTH);
+		
+		//Add shown cards
+		CardGUI cardGui = new CardGUI(board.player.hand);
+		frame.add(cardGui, BorderLayout.WEST);
+		
+		//Splash Screen to display message when game starts
+		JOptionPane splash = new JOptionPane();
+		splash.showMessageDialog(splash, "You are " + board.player.getName() + "! Press NextPlayer to begin playing!");
 	}
 	
 	public static void createMenuLayout(JMenu menu){

@@ -1,3 +1,4 @@
+package clueGame;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
@@ -9,15 +10,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-public class ControlPanelGUI extends JFrame{
+public class ControlPanelGUI extends JPanel{
 	public ControlPanelGUI() {
-		setTitle("CLUE");
-		setSize(1000, 400);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		createLayout();
-	}
-	
-	private void createLayout() {
 		JPanel masterPanel = new JPanel();
 		masterPanel.setLayout(new GridLayout(2,3));
 
@@ -68,14 +62,6 @@ public class ControlPanelGUI extends JFrame{
 		masterPanel.add(die);
 		masterPanel.add(guess);
 		masterPanel.add(guessResult);
-		
 	}
 	
-	public static void main(String[] args) {
-		ControlPanelGUI gui = new ControlPanelGUI();
-		gui.setVisible(true);
-		
-	}
-	
-
 }
