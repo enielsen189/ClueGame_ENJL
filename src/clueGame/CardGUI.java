@@ -11,9 +11,9 @@ import javax.swing.border.TitledBorder;
 
 public class CardGUI extends JPanel{
 	public CardGUI(Set<Card> c) {
-		JPanel masterPanel = new JPanel();
-		masterPanel.setLayout(new GridLayout(3, 2));
-		JLabel masterLabel = new JLabel("My Cards");
+		//JPanel masterPanel = new JPanel();
+		setLayout(new GridLayout(3, 2));
+		//JLabel masterLabel = new JLabel("My Cards");
 		//Go through cards and display which cards are in the players hand
 		
 		//People
@@ -49,9 +49,11 @@ public class CardGUI extends JPanel{
 		weapons.setBorder(new TitledBorder (new EtchedBorder(), "Weapons"));
 		
 		//Add all of them to the master panel
-		masterPanel.add(masterLabel);
-		masterPanel.add(people);
-		masterPanel.add(rooms);
-		masterPanel.add(weapons);
+		//add(masterLabel);
+		setBorder(new TitledBorder (new EtchedBorder(), "My Cards"));
+		add(people);
+		add(rooms);
+		add(weapons);
+		
 	}
 }
