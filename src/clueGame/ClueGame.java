@@ -41,11 +41,13 @@ public class ClueGame {
 		
 		//Add control panel
 		ControlPanelGUI controlGui = new ControlPanelGUI();
+		CardGUI cardGui = new CardGUI(board.player.hand);
 		frame.add(controlGui, BorderLayout.SOUTH);
+		frame.add(cardGui, BorderLayout.EAST);
 		
 		//Add shown cards
-		CardGUI cardGui = new CardGUI(board.player.hand);
-		frame.add(cardGui, BorderLayout.WEST);
+		
+		
 		
 		//Splash Screen to display message when game starts
 		JOptionPane splash = new JOptionPane();

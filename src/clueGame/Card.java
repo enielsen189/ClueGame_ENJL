@@ -17,6 +17,10 @@ public class Card {
 	public String getName() {
 		return cardName;
 	}
+	
+	public CardType getType() {
+		return type;
+	}
 
 	public Card(String cardName, CardType type) {
 		super();
