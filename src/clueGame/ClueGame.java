@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 
 public class ClueGame {
 	public static Board board;
+	private static boolean gameOver = false;
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Clue Game Board");
@@ -51,6 +52,16 @@ public class ClueGame {
 		//Splash Screen to display message when game starts
 		JOptionPane splash = new JOptionPane();
 		splash.showMessageDialog(splash, "You are " + board.player.getName() + "! Press NextPlayer to begin playing!");
+		
+		//while game not over
+		while (gameOver == false) {
+			class NextPlayerListener implements ActionListener {
+				public void actionPerformed(ActionEvent e){
+					//do next player code (FUNCTION in ClueGame)-Pass in next player
+					//go to next player
+				}
+			}
+		}
 	}
 	
 	public static void createMenuLayout(JMenu menu){

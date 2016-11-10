@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -43,6 +44,7 @@ public class Board extends JPanel{
 	public Solution suggestion;
 	private Map<String, BoardCell> roomLabel = new HashMap<String, BoardCell>();
 	private ArrayList<String> roomList = new ArrayList<String>();
+	private ArrayList<Player> totalPlayers = new ArrayList<Player>();
 	
 	public void setSolution(String person, String room, String weapon) {
 		solution.person = person;
@@ -218,6 +220,7 @@ public class Board extends JPanel{
 					player.setRow(Integer.parseInt(splitPieces[2]));
 					player.setColumn(Integer.parseInt(splitPieces[3]));
 					player.id = -1;
+					totalPlayers.add(player);
 				}
 				else if(splitPieces[4].equals("C")) {
 					ComputerPlayer tempComputer = new ComputerPlayer();
@@ -227,6 +230,7 @@ public class Board extends JPanel{
 					tempComputer.setColumn(Integer.parseInt(splitPieces[3]));
 					tempComputer.id = idCounter;
 					comp.add(tempComputer);
+					totalPlayers.add(tempComputer);
 					idCounter++;
 				}
 				else {
@@ -346,6 +350,7 @@ public class Board extends JPanel{
 	
 	private void buildDeck() {
 		dealDeck = new HashSet<Card>();
+		ArrayList<Card> shuffleDeck = new ArrayList<Card>();
 		//Add all room cards not in the solution to the deck
 		for (Card r:roomCards) {
 			if (!r.getName().equals(solution.room)) {
@@ -364,6 +369,15 @@ public class Board extends JPanel{
 				dealDeck.add(w);
 			}
 		}
+		/*//shuffle
+		for (Card c : dealDeck) {
+			shuffleDeck.add(c);
+			dealDeck.remove(c);
+		}
+		//Collections.shuffle(shuffleDeck);
+		for (int i = 0; i < shuffleDeck.size(); i++) {
+			dealDeck.add(shuffleDeck.get(i));
+		}*/
 	}
 	
 	public void deal() {

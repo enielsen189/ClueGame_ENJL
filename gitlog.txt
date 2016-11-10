@@ -1,113 +1,23 @@
-commit f399eaa06431e97cf17a56f4f1c45acc108195b6
-Author: Jackie Loerincs <jloerinc@mymai.mines.edu>
-Date:   Tue Nov 8 16:58:26 2016 -0700
-
-    Added File menu bar with functionality
-
-commit fd3a313d6aff20a90decb2bdc48dfdaaf421ee8a
-Author: Jackie Loerincs <jloerinc@mymai.mines.edu>
-Date:   Tue Nov 8 15:52:48 2016 -0700
-
-    Added DetectiveNotesGUI class
-
-commit 6903ed8ca657f71eb04b8086b558bafa2944df3a
-Author: Emily Nielsen <enielsen@mymail.mines.edu>
-Date:   Tue Nov 8 12:13:42 2016 -0700
-
-    Board drawn with grid, names, and player starting locations
-
-commit 385960457dbbc7876f9b2057ca6a7197431e46ec
-Author: Emily Nielsen <enielsen@mymail.mines.edu>
-Date:   Tue Nov 8 11:59:33 2016 -0700
-
-    Board drawn with grid, labels, and door directions
-
-commit 31c61736edba8b56dda2ea4dd08f633c28dac4f9
-Author: Jackie Loerincs <jloerinc@mymai.mines.edu>
-Date:   Mon Nov 7 13:53:18 2016 -0700
-
-    Added grid to board and created door direction switch
-
-commit f132d8ab2cf6268c4ea0af3ee875b36a54616576
-Author: Jackie Loerincs <jloerinc@mymai.mines.edu>
-Date:   Mon Nov 7 13:08:18 2016 -0700
-
-    Added ClueGame class and modified draw method
-
-commit 94906a3ab2358e19e8dcf18dea85072456c012e2
-Author: Jackie Loerincs <jloerinc@mymai.mines.edu>
-Date:   Mon Nov 7 11:03:10 2016 -0700
-
-    Renamed GUI class to ControlPanelGUI and extended Board from JPanel
-
-commit 77850aed3e5f3a143daf073ee78b750d874a7b1f
-Author: Emily Nielsen <enielsen@mymail.mines.edu>
-Date:   Tue Nov 1 16:29:56 2016 -0600
-
-    Changed loadBoardConfig and loadRoomConfig visibility back to public because CRaders tests depend on that
-
-commit c95d479a1d85151988deb174580b037c43f33e98
-Author: Emily Nielsen <enielsen@mymail.mines.edu>
-Date:   Tue Nov 1 16:27:30 2016 -0600
-
-    Edited pickLocation from the ComputerPlayer class to include a boolean to determine whether or not both doorsInRange are included in visitedRooms
-
-commit 54b5df93f2a6b285e9f6efd86c7be7269dec2b38
-Author: Emily Nielsen <enielsen@mymail.mines.edu>
-Date:   Tue Nov 1 16:14:21 2016 -0600
-
-    Changed the name of totalRooms to allLocations because the location a computer player could potentially end up at does not have to be a room, it could also be a walkway
-
-commit 1316bb4a80b3971ea05fe09f3689e061e0f2545a
-Author: Emily Nielsen <enielsen@mymail.mines.edu>
-Date:   Tue Nov 1 16:09:38 2016 -0600
-
-    Changed the visibility of doorsInRange and totalRooms in ComputerPlayer from public to private since they are not used outside of the class
-
-commit 87d1e5e364626043f489ab4ecd537a89439838ff
-Author: Emily Nielsen <enielsen@mymail.mines.edu>
-Date:   Tue Nov 1 16:06:05 2016 -0600
-
-    Changed the name of resolution to solutionCheck in handleSuggestion() because resolution didn't make much sense as a variable name
-
-commit d2511871ae2cc541c337410ea18bd0cde3c22a79
-Author: Emily Nielsen <enielsen@mymail.mines.edu>
-Date:   Tue Nov 1 16:01:58 2016 -0600
-
-    Changed the following functions from public to private...calcAdjacencies(), findAllTargets(), loadWeaponConfig(), loadPlayerConfig(), loadBoardConfig(), loadRoomConfig(), and convertColor()
-
-commit d95f5091fcde0aff19cc51650a941e11e77b23a7
-Author: Emily Nielsen <enielsen@mymail.mines.edu>
-Date:   Tue Nov 1 15:56:49 2016 -0600
-
-    Renamed x and y to column and row respectively in calcAdjacencies() in order to have it make more sense
-
-commit d13fa8431a91f0d35ac2dfc2e974f2a9494fdc8d
-Author: Emily Nielsen <enielsen@mymail.mines.edu>
-Date:   Tue Nov 1 15:49:27 2016 -0600
-
-    Renamed 'C1' to 'tempComputer' in the loadPlayerConfig() function because it didn't make sense to make a C1 every time and add it to the arraylist. They will not all be C1
-
-commit df08b5680c67d95636c9d124edc91871474bf2d0
-Author: Emily Nielsen <enielsen@mymail.mines.edu>
-Date:   Tue Nov 1 15:36:22 2016 -0600
-
-    for loadBoardConfig(), the Scanner in was never being closed, so I added the in.close() statement after the while loop
-
-commit 113bdcbeda8a8652c3c55443edfab638aad3c9a2
-Author: Emily Nielsen <enielsen@mymail.mines.edu>
-Date:   Tue Nov 1 15:31:33 2016 -0600
-
-    Added the methods in loadConfigFiles into initialize function to reduce function hopping
-
-commit 7eb1834bce6eaa583984db10fe3fa4f063c395e1
-Author: Emily Nielsen <enielsen@mymail.mines.edu>
-Date:   Tue Nov 1 15:28:25 2016 -0600
-
-    Added comments explaining the different config files because we seem to have so many of them
-
-commit 79070a3fa20ac333eb8052623fba7bda02206c23
-Author: Emily Nielsen <enielsen@mymail.mines.edu>
-Date:   Tue Nov 1 12:19:58 2016 -0600
-
-    New Repository with code
+0fe3a51 (HEAD -> master, origin/master) Cards in player hand now printed to gui
+4279a8b All gui written, not showing player cards gui
+783e454 Started gui to display seen cards
+cb1a8c8 Added new classes
+f399eaa Added File menu bar with functionality
+fd3a313 Added DetectiveNotesGUI class
+6903ed8 Board drawn with grid, names, and player starting locations
+3859604 Board drawn with grid, labels, and door directions
+31c6173 Added grid to board and created door direction switch
+f132d8a Added ClueGame class and modified draw method
+94906a3 Renamed GUI class to ControlPanelGUI and extended Board from JPanel
+77850ae Changed loadBoardConfig and loadRoomConfig visibility back to public because CRaders tests depend on that
+c95d479 Edited pickLocation from the ComputerPlayer class to include a boolean to determine whether or not both doorsInRange are included in visitedRooms
+54b5df9 Changed the name of totalRooms to allLocations because the location a computer player could potentially end up at does not have to be a room, it could also be a walkway
+1316bb4 Changed the visibility of doorsInRange and totalRooms in ComputerPlayer from public to private since they are not used outside of the class
+87d1e5e Changed the name of resolution to solutionCheck in handleSuggestion() because resolution didn't make much sense as a variable name
+d251187 Changed the following functions from public to private...calcAdjacencies(), findAllTargets(), loadWeaponConfig(), loadPlayerConfig(), loadBoardConfig(), loadRoomConfig(), and convertColor()
+d95f509 Renamed x and y to column and row respectively in calcAdjacencies() in order to have it make more sense
+d13fa84 Renamed 'C1' to 'tempComputer' in the loadPlayerConfig() function because it didn't make sense to make a C1 every time and add it to the arraylist. They will not all be C1
+df08b56 for loadBoardConfig(), the Scanner in was never being closed, so I added the in.close() statement after the while loop
+113bdcb Added the methods in loadConfigFiles into initialize function to reduce function hopping
+7eb1834 Added comments explaining the different config files because we seem to have so many of them
+79070a3 New Repository with code
