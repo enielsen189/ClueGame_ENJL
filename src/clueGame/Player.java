@@ -8,13 +8,14 @@ import clueGame.Board;
 import java.util.Set;
 import java.awt.Color;
 
-public class Player {
+public abstract class Player {
 	private String playerName;
 	protected int row;
 	protected int column;
 	private Color color;	//CHANGE BACK TO A COLOR OBJECT
 	public Set<Card> hand = new HashSet<Card>();
 	public int id;
+	private BoardCell location;
 	
 	public Card disproveSuggestion(Solution suggestion) {
 		ArrayList<Card> inHand = new ArrayList<Card>();
@@ -69,4 +70,11 @@ public class Player {
 		row = r;
 		column = col;
 	}
+	
+	public BoardCell getLocation() {
+		return new BoardCell(row,column);
+	}
+
+	public abstract BoardCell pickLocation(Set<BoardCell> targets);
+	
 }

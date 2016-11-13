@@ -44,7 +44,8 @@ public class Board extends JPanel{
 	public Solution suggestion;
 	private Map<String, BoardCell> roomLabel = new HashMap<String, BoardCell>();
 	private ArrayList<String> roomList = new ArrayList<String>();
-	private ArrayList<Player> totalPlayers = new ArrayList<Player>();
+	public ArrayList<Player> totalPlayers = new ArrayList<Player>();
+	private static int playerIndex = 0;
 	
 	public void setSolution(String person, String room, String weapon) {
 		solution.person = person;
@@ -505,13 +506,27 @@ public class Board extends JPanel{
 			int c = tempbc.column;
 			g.drawString(temp, 40*c, 40*r);
 		}
-		//draw the people in the correct starting locations
-		g.setColor(player.getColor());
-		g.fillOval(player.getColumn()*40, player.getRow()*40, 40, 40);
-		
-		for (int i = 0; i < comp.size(); i++) {
-			g.setColor(comp.get(i).getColor());
-			g.fillOval(comp.get(i).getColumn()*40, comp.get(i).getRow()*40, 40, 40);
+		//draw the people in the correct locations
+		for (int i = 0; i < totalPlayers.size(); i++) {
+			g.setColor(totalPlayers.get(i).getColor());
+			g.fillOval(totalPlayers.get(i).getColumn()*40, totalPlayers.get(i).getRow()*40, 40, 40);
 		}
+		System.out.println("I RE-PAINTED!!!!");
+	}
+	
+	public int roll(){
+		return (int) (Math.random()*6 + 1);
+	}
+	
+	public void turn(int roll, int index){
+		System.out.println(targets.size() + " size");
+		calcTargets(totalPlayers.get(index).row, totalPlayers.get(index).column, roll);
+		System.out.println(targets.size() + " size");
+		System.out.println(totalPlayers.get(index).row + " " + totalPlayers.get(index).column);
+		totalPlayers.get(index).pickLocation(targets);
+		System.out.println("Index: " + index);
+		comp.get(index).pickLocation(targets);
+		System.out.println(totalPlayers.get(index).row + " " + totalPlayers.get(index).column);
+		repaint();
 	}
 }

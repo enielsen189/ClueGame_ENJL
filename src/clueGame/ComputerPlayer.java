@@ -15,6 +15,7 @@ public class ComputerPlayer extends Player {
 	
 	
 	public BoardCell pickLocation(Set<BoardCell> targets) {
+		System.out.println("Entered Pick Location");
 		doorsInRange.clear();
 		allLocations.clear();
 		for (BoardCell bc : targets) {
@@ -72,7 +73,9 @@ public class ComputerPlayer extends Player {
 		Random rand = new Random();
 		BoardCell returnCell = allLocations.get(rand.nextInt(allLocations.size()));
 		row = returnCell.row;
+		System.out.println("Row from inside Computer Player: " + row);
 		column = returnCell.column;
+		System.out.println("Column from inside Computer Player: " + column);
 		return returnCell;
 	}
 	
@@ -123,4 +126,5 @@ public class ComputerPlayer extends Player {
 			board.suggestion = new Solution(accusedPerson, accusedRoom, accusedWeapon);
 		}
 	}
+
 }
