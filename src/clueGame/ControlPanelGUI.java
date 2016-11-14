@@ -15,11 +15,11 @@ import javax.swing.border.TitledBorder;
 
 public class ControlPanelGUI extends JPanel{
 	private Board board;
-	private static boolean humanFinished = true;
+	private static boolean humanFinished;
 	private static int playerIndex = 0;
+	private static int rollNumber;
 	static JTextField turnText = new JTextField(10);
 	static JTextField rollText = new  JTextField(10);
-	private static int rollNumber;
 	
 	public ControlPanelGUI(Board board) {
 		this.board = board;
@@ -74,81 +74,36 @@ public class ControlPanelGUI extends JPanel{
 	}
 	
 	// Mouse click cycles through players
-			class NextPlayerListener implements MouseListener{
-
-				@Override
-				public void mouseClicked(MouseEvent event) {
-					if (playerIndex == 0){
-						if(humanFinished == false){
-							//ERROR!
-						}
-						else{
-						humanNext(board);
-						}
-					}
-					else
-					{
-						computerNext(board);
-					}
-					
-					//Increment player index
-					if(playerIndex == 5){
-						playerIndex = 0;
-					}
-					else{
-						System.out.println(playerIndex);
-						playerIndex++;	
-					}
-					
-					
-				}
-
-				@Override
-				public void mouseEntered(MouseEvent arg0) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void mouseExited(MouseEvent arg0) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void mousePressed(MouseEvent arg0) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void mouseReleased(MouseEvent arg0) {
-					// TODO Auto-generated method stub
-					
-				}
-			}
+	class NextPlayerListener implements MouseListener{
+		public void mouseClicked(MouseEvent event) {
+			nextPlayer(board);
 			
-			public static void humanNext(Board board){
-				System.out.println("Human");
-				humanFinished = false;
-				turnText.setText(board.totalPlayers.get(playerIndex).getName());
-				rollNumber = board.roll();
-				rollText.setText(Integer.toString(rollNumber));
-				System.out.println(playerIndex + "TURN");
-				board.turn(rollNumber, playerIndex);
-				
-				//DO STUFF
-				
-				humanFinished = true;
+			//Increment player index
+			if(playerIndex == 5){
+				playerIndex = 0;
 			}
+			else{
+				System.out.println(playerIndex);
+				playerIndex++;	
+			}
+		}
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent arg0) {}
+	}
 			
-			public static void computerNext(Board board){
-				System.out.println("Computer");
-				turnText.setText(board.totalPlayers.get(playerIndex).getName());
-				rollNumber = board.roll();
-				rollText.setText(Integer.toString(rollNumber));
-				System.out.println(playerIndex + "TURN");
-				board.turn(rollNumber, playerIndex);
-				System.out.println(board.totalPlayers.get(playerIndex).row + " " + board.totalPlayers.get(playerIndex).column);
-			}
+	// Roll die, update GUI text fields, and initiate turn for player.
+	public void nextPlayer(Board board){
+		//Roll die
+		rollNumber = board.roll();
+		
+		//Update Text
+		turnText.setText(board.totalPlayers.get(playerIndex).getName());
+		rollText.setText(Integer.toString(rollNumber));
+		
+		//Take player turn
+		System.out.println(playerIndex + " TOOK TURN");
+		board.turn(rollNumber, playerIndex);
+	}
 }

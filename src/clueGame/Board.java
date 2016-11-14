@@ -519,14 +519,19 @@ public class Board extends JPanel{
 	}
 	
 	public void turn(int roll, int index){
-		System.out.println(targets.size() + " size");
-		calcTargets(totalPlayers.get(index).row, totalPlayers.get(index).column, roll);
-		System.out.println(targets.size() + " size");
-		System.out.println(totalPlayers.get(index).row + " " + totalPlayers.get(index).column);
-		totalPlayers.get(index).pickLocation(targets);
-		System.out.println("Index: " + index);
-		comp.get(index).pickLocation(targets);
-		System.out.println(totalPlayers.get(index).row + " " + totalPlayers.get(index).column);
+		if (index == 0){
+			System.out.println("I am human and therefore do nothing!");
+			//Human target selection code here!
+		}
+		else {
+			//System.out.println(targets.size() + " size");
+			calcTargets(totalPlayers.get(index).row, totalPlayers.get(index).column, roll);
+			System.out.println(targets.size() + " target list size");
+			System.out.println(totalPlayers.get(index).row + " " + totalPlayers.get(index).column + " -> where I was");
+			totalPlayers.get(index).pickLocation(targets);
+			System.out.println(totalPlayers.get(index).row + " " + totalPlayers.get(index).column + " -> where I am going");
+			System.out.println("Index: " + index + " finished moving");
+		}
 		repaint();
 	}
 }

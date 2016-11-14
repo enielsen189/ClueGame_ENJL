@@ -25,6 +25,8 @@ public class ClueGame {
 
 	
 	public static void main(String[] args) {
+		ClueGame clueGame = new ClueGame();
+		
 		JFrame frame = new JFrame("Clue Game Board");
 		
 		frame.setSize(1500, 1000);
@@ -37,13 +39,13 @@ public class ClueGame {
 		board.initialize();
 		board.deal();
 		
-		//File Menu
+		//Add File Menu
 		JMenu menu = new JMenu("File");
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(menu);
 		
-		createMenuLayout(menu);
+		clueGame.createMenuLayout(menu);
 		
 		frame.setJMenuBar(menuBar);
 		
@@ -61,11 +63,10 @@ public class ClueGame {
 		//Splash Screen to display message when game starts
 		JOptionPane splash = new JOptionPane();
 		splash.showMessageDialog(splash, "You are " + board.player.getName() + "! Press NextPlayer to begin playing!");
-		
 	}
 	
-	public static void createMenuLayout(JMenu menu){
-		// Create notes
+	public void createMenuLayout(JMenu menu){
+		// Create notes button
 		JMenuItem notes = new JMenuItem("Show Notes");
 		DetectiveNotesGUI gui = new DetectiveNotesGUI(board);
 		
@@ -76,7 +77,7 @@ public class ClueGame {
 		}
 		notes.addActionListener(new NotesListener());
 		
-		// Create exit
+		// Create exit button
 		JMenuItem exit = new JMenuItem("Exit");
 		class ExitListener implements ActionListener {
 			public void actionPerformed(ActionEvent e){
@@ -88,5 +89,4 @@ public class ClueGame {
 		menu.add(notes);
 		menu.add(exit);
 	}	
-	
 }
