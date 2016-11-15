@@ -4,6 +4,8 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.Stroke;
 
 public class BoardCell {
@@ -17,6 +19,7 @@ public class BoardCell {
 	public static final int DOOR_HEIGHT = 40;
 	public static final int DOOR_WIDTH = 5;
 	private Color color;
+	private Boolean highlight = false;
 	
 	public void setLocation(int i, int j) {
 		row = i;
@@ -59,17 +62,18 @@ public class BoardCell {
 		// Remove this line and add the color to when the board cell is read in
 		
 		if(initial == 'W'){
-			color = Color.WHITE;
-			g.setColor(color);
+			g.setColor(Color.WHITE);
 			g.fillRect(CELL_LENGTH*column, CELL_LENGTH*row, CELL_LENGTH, CELL_LENGTH);
 			g.setColor(Color.BLACK);
 			g.drawRect(CELL_LENGTH*column, CELL_LENGTH*row, CELL_LENGTH, CELL_LENGTH);
-			
 			}
 		else{
-			color = Color.GRAY;
-			
-			g.setColor(color);
+			g.setColor(Color.GRAY);
+			g.fillRect(CELL_LENGTH*column, CELL_LENGTH*row, CELL_LENGTH, CELL_LENGTH);
+		}
+		
+		if(highlight){
+			g.setColor(Color.CYAN);
 			g.fillRect(CELL_LENGTH*column, CELL_LENGTH*row, CELL_LENGTH, CELL_LENGTH);
 		}
 
@@ -91,9 +95,16 @@ public class BoardCell {
 				g.fillRect(CELL_LENGTH*column+(CELL_LENGTH-DOOR_WIDTH), CELL_LENGTH*row, DOOR_WIDTH, DOOR_HEIGHT);
 				break;
 			}
-			}
-		
-		
-		
+		}
+	}
+	
+	public boolean isWithin(int x, int y) {
+		Rectangle rect = new Rectangle(CELL_LENGTH*column, CELL_LENGTH*row, CELL_LENGTH, CELL_LENGTH);
+		return (rect.contains(new Point(x, y)));
+
+	}
+	
+	public void updateHighlight(Boolean b){
+		highlight = b;
 	}
 }

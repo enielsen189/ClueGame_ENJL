@@ -50,7 +50,6 @@ public class ClueGame {
 		frame.setJMenuBar(menuBar);
 		
 		frame.add(board,BorderLayout.CENTER);
-		frame.setVisible(true);
 		
 		//Add Control Panel GUI
 		ControlPanelGUI gui = new ControlPanelGUI(board);
@@ -63,6 +62,8 @@ public class ClueGame {
 		//Splash Screen to display message when game starts
 		JOptionPane splash = new JOptionPane();
 		splash.showMessageDialog(splash, "You are " + board.player.getName() + "! Press NextPlayer to begin playing!");
+		
+		frame.setVisible(true);
 	}
 	
 	public void createMenuLayout(JMenu menu){

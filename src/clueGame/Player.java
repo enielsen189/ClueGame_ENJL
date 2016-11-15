@@ -16,6 +16,7 @@ public abstract class Player {
 	public Set<Card> hand = new HashSet<Card>();
 	public int id;
 	private BoardCell location;
+	public Boolean isFinished = true;
 	
 	public Card disproveSuggestion(Solution suggestion) {
 		ArrayList<Card> inHand = new ArrayList<Card>();

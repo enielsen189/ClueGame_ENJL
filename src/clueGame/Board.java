@@ -14,12 +14,15 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class Board extends JPanel{
+public class Board extends JPanel implements MouseListener{
 	public int numRows = 0;
 	public int numColumns = 0;
 	private final int MAX_BOARD_SIZE = 50;
@@ -84,6 +87,7 @@ public class Board extends JPanel{
 			loadBoardConfig();
 			loadPlayerConfig();
 			loadWeaponConfig();
+			addMouseListener(this);
 		}
 		catch (BadConfigFormatException e) {
 			
@@ -520,18 +524,69 @@ public class Board extends JPanel{
 	
 	public void turn(int roll, int index){
 		if (index == 0){
-			System.out.println("I am human and therefore do nothing!");
-			//Human target selection code here!
+			totalPlayers.get(index).isFinished = false;
+			calcTargets(totalPlayers.get(index).row, totalPlayers.get(index).column, roll);
+			for (BoardCell c: targets){
+				c.updateHighlight(true);
+			}
 		}
 		else {
-			//System.out.println(targets.size() + " size");
 			calcTargets(totalPlayers.get(index).row, totalPlayers.get(index).column, roll);
-			System.out.println(targets.size() + " target list size");
-			System.out.println(totalPlayers.get(index).row + " " + totalPlayers.get(index).column + " -> where I was");
 			totalPlayers.get(index).pickLocation(targets);
-			System.out.println(totalPlayers.get(index).row + " " + totalPlayers.get(index).column + " -> where I am going");
-			System.out.println("Index: " + index + " finished moving");
 		}
 		repaint();
+	}
+
+	//Click on board to selection human target
+	public void mouseClicked(MouseEvent e) {
+		if(!totalPlayers.get(playerIndex).isFinished){
+			BoardCell selection = null;
+			for (BoardCell c: targets){
+				if(c.isWithin(e.getX(), e.getY())){
+					System.out.println("VALID SELECTION");
+					selection = c;
+					break;
+				}
+			}
+			
+				if (selection != null) {
+					totalPlayers.get(playerIndex).setLocation(selection.row, selection.column);
+					totalPlayers.get(playerIndex).isFinished = true;
+					for (BoardCell c: targets){
+						c.updateHighlight(false);
+					}
+					repaint();
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "That is an invalid selection!", "Oh no!", JOptionPane.INFORMATION_MESSAGE);
+				}
+		}
+		else{
+			JOptionPane.showMessageDialog(null, "It is not your turn!", "Cannot select location!", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
@@ -15,14 +16,14 @@ import javax.swing.border.TitledBorder;
 
 public class ControlPanelGUI extends JPanel{
 	private Board board;
-	private static boolean humanFinished;
-	private static int playerIndex = 0;
+	private static int playerIndex;
 	private static int rollNumber;
 	static JTextField turnText = new JTextField(10);
 	static JTextField rollText = new  JTextField(10);
 	
 	public ControlPanelGUI(Board board) {
 		this.board = board;
+		playerIndex = board.totalPlayers.size() - 1;
 		
 		JPanel masterPanel = new JPanel();
 		masterPanel.setLayout(new GridLayout(2,3));
@@ -76,15 +77,14 @@ public class ControlPanelGUI extends JPanel{
 	// Mouse click cycles through players
 	class NextPlayerListener implements MouseListener{
 		public void mouseClicked(MouseEvent event) {
-			nextPlayer(board);
-			
 			//Increment player index
-			if(playerIndex == 5){
-				playerIndex = 0;
+			playerIndex = (playerIndex + 1) % board.totalPlayers.size();
+			//Initiate turn
+			if(board.totalPlayers.get(0).isFinished){
+				nextPlayer(board);
 			}
 			else{
-				System.out.println(playerIndex);
-				playerIndex++;	
+				JOptionPane.showMessageDialog(null, "Select a valid location.", "Your turn is not over!", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 		public void mouseEntered(MouseEvent arg0) {}
