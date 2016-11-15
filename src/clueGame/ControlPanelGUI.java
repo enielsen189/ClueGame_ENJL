@@ -103,7 +103,6 @@ public class ControlPanelGUI extends JPanel{
 		rollText.setText(Integer.toString(rollNumber));
 		
 		//Take player turn
-		System.out.println(playerIndex + " TOOK TURN");
 		board.turn(rollNumber, playerIndex);
 	}
 }

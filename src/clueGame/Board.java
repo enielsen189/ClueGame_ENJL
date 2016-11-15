@@ -14,11 +14,14 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -374,15 +377,7 @@ public class Board extends JPanel implements MouseListener{
 				dealDeck.add(w);
 			}
 		}
-		/*//shuffle
-		for (Card c : dealDeck) {
-			shuffleDeck.add(c);
-			dealDeck.remove(c);
-		}
-		//Collections.shuffle(shuffleDeck);
-		for (int i = 0; i < shuffleDeck.size(); i++) {
-			dealDeck.add(shuffleDeck.get(i));
-		}*/
+		
 	}
 	
 	public void deal() {
@@ -515,7 +510,6 @@ public class Board extends JPanel implements MouseListener{
 			g.setColor(totalPlayers.get(i).getColor());
 			g.fillOval(totalPlayers.get(i).getColumn()*40, totalPlayers.get(i).getRow()*40, 40, 40);
 		}
-		System.out.println("I RE-PAINTED!!!!");
 	}
 	
 	public int roll(){
@@ -543,14 +537,27 @@ public class Board extends JPanel implements MouseListener{
 			BoardCell selection = null;
 			for (BoardCell c: targets){
 				if(c.isWithin(e.getX(), e.getY())){
-					System.out.println("VALID SELECTION");
 					selection = c;
 					break;
 				}
 			}
+			SuggestionGui sGui = new SuggestionGui(theInstance);
 			
 				if (selection != null) {
 					totalPlayers.get(playerIndex).setLocation(selection.row, selection.column);
+					System.out.println("Doorway" + totalPlayers.get(playerIndex).getLocation().isDoorway());
+					System.out.println("Index" + playerIndex);
+					System.out.println("Location Row: " + totalPlayers.get(playerIndex).getLocation().row);
+					System.out.println("Location Column: " + totalPlayers.get(playerIndex).getLocation().column);
+					System.out.println("Initial: " + totalPlayers.get(playerIndex).getLocation().initial);
+					if(totalPlayers.get(playerIndex).getLocation().initial != 'W') {
+						System.out.println("Not a walkway");
+					}
+					if(totalPlayers.get(playerIndex).getLocation().isDoorway()) {
+						System.out.println("Inside second if");
+						//dialogue box for suggestion
+						sGui.setVisible(true);
+					}
 					totalPlayers.get(playerIndex).isFinished = true;
 					for (BoardCell c: targets){
 						c.updateHighlight(false);
@@ -588,5 +595,9 @@ public class Board extends JPanel implements MouseListener{
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public Map<Character, String> getRooms() {
+		return rooms;
 	}
 }
