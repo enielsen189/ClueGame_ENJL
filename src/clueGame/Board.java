@@ -164,9 +164,10 @@ public class Board extends JPanel implements MouseListener{
 			for(int i = 0; i < numColumns; i++){
 				String label = splitRows[i];
 				board[numRows][i] = new BoardCell();
-				board[numRows][i].initial = label.charAt(0);
+				board[numRows][i].setInitial(label.charAt(0));
+				//System.out.println(board[numRows][i].initial);
 				
-				if(legendInitials.indexOf(board[numRows][i].initial) < 0){
+				if(legendInitials.indexOf(board[numRows][i].getInitial()) < 0){
 					throw new BadConfigFormatException("Invalid room initial");
 				}
 				
@@ -175,6 +176,7 @@ public class Board extends JPanel implements MouseListener{
 					switch (dir){
 					case 'D':
 						board[numRows][i].direction = DoorDirection.DOWN;
+						//System.out.println(board[numRows][i].direction);
 						break;
 					case 'U':
 						board[numRows][i].direction = DoorDirection.UP;
@@ -275,7 +277,7 @@ public class Board extends JPanel implements MouseListener{
 		for (int i = 0; i < row; i++){
 			for (int j = 0; j < column; j++){
 				Set<BoardCell> adj = new HashSet<BoardCell>();
-				if (board[i][j].initial != 'W'){ 
+				if (board[i][j].getInitial() != 'W'){ 
 					if (board[i][j].isDoorway() == false){
 						//in a room and not in a doorway
 						//no adjacencies added
@@ -303,22 +305,22 @@ public class Board extends JPanel implements MouseListener{
 				else{
 				//outside of a room and not in a doorway
 				if(i - 1 >= 0){ 
-					if((board[i-1][j].isDoorway() && board[i-1][j].direction == DoorDirection.DOWN)|| board[i-1][j].initial == 'W'){
+					if((board[i-1][j].isDoorway() && board[i-1][j].direction == DoorDirection.DOWN)|| board[i-1][j].getInitial() == 'W'){
 						adj.add(board[i-1][j]);
 					}
 				}
 				if (i + 1 < row){
-					if((board[i+1][j].isDoorway() && board[i+1][j].direction == DoorDirection.UP)|| board[i+1][j].initial == 'W'){
+					if((board[i+1][j].isDoorway() && board[i+1][j].direction == DoorDirection.UP)|| board[i+1][j].getInitial() == 'W'){
 						adj.add(board[i +1][j]);
 					}
 				}
 				if (j - 1 >= 0){
-					if((board[i][j-1].isDoorway() && board[i][j-1].direction == DoorDirection.RIGHT)|| board[i][j-1].initial == 'W'){
+					if((board[i][j-1].isDoorway() && board[i][j-1].direction == DoorDirection.RIGHT)|| board[i][j-1].getInitial() == 'W'){
 						adj.add(board[i][j-1]);
 					}
 				}
 				if (j + 1 < column){
-					if((board[i][j+1].isDoorway() && board[i][j+1].direction == DoorDirection.LEFT)|| board[i][j+1].initial == 'W'){
+					if((board[i][j+1].isDoorway() && board[i][j+1].direction == DoorDirection.LEFT)|| board[i][j+1].getInitial() == 'W'){
 						adj.add(board[i][j+1]);
 					}
 				}
@@ -541,22 +543,24 @@ public class Board extends JPanel implements MouseListener{
 					break;
 				}
 			}
-			SuggestionGui sGui = new SuggestionGui(theInstance);
+
 			
 				if (selection != null) {
 					totalPlayers.get(playerIndex).setLocation(selection.row, selection.column);
-					System.out.println("Doorway" + totalPlayers.get(playerIndex).getLocation().isDoorway());
-					System.out.println("Index" + playerIndex);
-					System.out.println("Location Row: " + totalPlayers.get(playerIndex).getLocation().row);
-					System.out.println("Location Column: " + totalPlayers.get(playerIndex).getLocation().column);
-					System.out.println("Initial: " + totalPlayers.get(playerIndex).getLocation().initial);
-					if(totalPlayers.get(playerIndex).getLocation().initial != 'W') {
-						System.out.println("Not a walkway");
-					}
+					SuggestionGui sGui = new SuggestionGui(theInstance);
+					sGui.setVisible(true);
+					//System.out.println("Doorway" + totalPlayers.get(playerIndex).getLocation().isDoorway());
+					//System.out.println("Index" + playerIndex);//correct
+					//System.out.println("Location Row: " + totalPlayers.get(playerIndex).getLocation().row);//correct
+					//System.out.println("Location Column: " + totalPlayers.get(playerIndex).getLocation().column);//correct
+					System.out.println("Initial: " + totalPlayers.get(playerIndex).getLocation().getInitial());
+					//if(totalPlayers.get(playerIndex).getLocation().initial != 'W') {
+						//System.out.println("Not a walkway");
+					//}
 					if(totalPlayers.get(playerIndex).getLocation().isDoorway()) {
 						System.out.println("Inside second if");
 						//dialogue box for suggestion
-						sGui.setVisible(true);
+						//sGui.setVisible(true);
 					}
 					totalPlayers.get(playerIndex).isFinished = true;
 					for (BoardCell c: targets){

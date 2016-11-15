@@ -38,6 +38,7 @@ public class ClueGame {
 		board.setWPConfigFiles("data/ENTM_CluePlayers.txt", "data/ENTM_ClueWeapons.txt");
 		board.initialize();
 		board.deal();
+		System.out.println("ClueGame: " + board.totalPlayers.get(0).getLocation().getInitial());
 		
 		//Add File Menu
 		JMenu menu = new JMenu("File");

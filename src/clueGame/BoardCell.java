@@ -11,7 +11,7 @@ import java.awt.Stroke;
 public class BoardCell {
 	public int row;
 	public int column;
-	public char initial;
+	private char initial;
 	public DoorDirection direction = DoorDirection.NONE;
 	
 	//Drawing Variables
@@ -44,8 +44,10 @@ public class BoardCell {
 	
 	public boolean isDoorway(){
 		if (this.direction == DoorDirection.NONE){
+			//System.out.println("Returning false");
 			return false;
 		}
+		//System.out.println("Returning true");
 		return true;
 	}
 	
@@ -107,4 +109,10 @@ public class BoardCell {
 	public void updateHighlight(Boolean b){
 		highlight = b;
 	}
+
+	public void setInitial(char charAt) {
+		initial = charAt;
+		
+	}
+	
 }
