@@ -29,17 +29,17 @@ public class gameSetupTests {
 	public void playerInitTest() {
 		Player testPlayer = new HumanPlayer();
 		testPlayer = board.player;
-		assertEquals(testPlayer.getName(), "Rosette Foxwell");
-		assertEquals(Color.RED, testPlayer.getColor());
-		assertEquals(testPlayer.getRow(), 17);
-		assertEquals(testPlayer.getColumn(), 16);
+		assertEquals(testPlayer.getName(), "SL-8-R");
+		assertEquals(Color.GRAY, testPlayer.getColor());
+		assertEquals(testPlayer.getRow(), 11);
+		assertEquals(testPlayer.getColumn(), 1);
 		
 		Player testCompPlayer = new ComputerPlayer();
 		testCompPlayer = board.comp.get(0);
-		assertEquals(testCompPlayer.getName(), "SL-8-R");
-		assertEquals(Color.GRAY, testCompPlayer.getColor());
-		assertEquals(testCompPlayer.getRow(), 11);
-		assertEquals(testCompPlayer.getColumn(), 1);
+		assertEquals(testCompPlayer.getName(), "Captain Ebony");
+		assertEquals(Color.BLACK, testCompPlayer.getColor());
+		assertEquals(testCompPlayer.getRow(), 2);
+		assertEquals(testCompPlayer.getColumn(), 3);
 		testCompPlayer = board.comp.get(4);
 		assertEquals(testCompPlayer.getName(), "Hunter Cobalt");
 		assertEquals(Color.BLUE, testCompPlayer.getColor());

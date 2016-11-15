@@ -1,11 +1,11 @@
-M, Mercury, Card
-V, Venus, Card
-E, Earth, Card
-A, Mars, Card
-J, Jupiter, Card
-S, Saturn, Card
-U, Uranus, Card
-P, Pluto, Card
-N, Neptune, Card
-W, Walkway, Other
-X, Closet, Other
+M, Mercury, Card, 0, 0
+V, Venus, Card, 0, 0
+E, Earth, Card, 0, 0
+A, Mars, Card, 0, 0
+J, Jupiter, Card, 0, 0
+S, Saturn, Card, 0, 0
+U, Uranus, Card, 0, 0
+P, Pluto, Card, 0, 0
+N, Neptune, Card, 0, 0
+W, Walkway, Other, 0, 0
+X, Closet, Other, 0, 0
