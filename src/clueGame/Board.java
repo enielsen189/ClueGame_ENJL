@@ -547,18 +547,18 @@ public class Board extends JPanel implements MouseListener{
 			
 				if (selection != null) {
 					totalPlayers.get(playerIndex).setLocation(selection.row, selection.column);
-					SuggestionGui sGui = new SuggestionGui(theInstance);
-					sGui.setVisible(true);
 					//System.out.println("Doorway" + totalPlayers.get(playerIndex).getLocation().isDoorway());
 					//System.out.println("Index" + playerIndex);//correct
 					//System.out.println("Location Row: " + totalPlayers.get(playerIndex).getLocation().row);//correct
 					//System.out.println("Location Column: " + totalPlayers.get(playerIndex).getLocation().column);//correct
-					System.out.println("Initial: " + totalPlayers.get(playerIndex).getLocation().getInitial());
+					System.out.println("Initial: " + board[totalPlayers.get(playerIndex).getRow()][totalPlayers.get(playerIndex).getColumn()].getInitial());
 					//if(totalPlayers.get(playerIndex).getLocation().initial != 'W') {
 						//System.out.println("Not a walkway");
 					//}
-					if(totalPlayers.get(playerIndex).getLocation().isDoorway()) {
+					if(board[totalPlayers.get(playerIndex).getRow()][totalPlayers.get(playerIndex).getColumn()].isDoorway()) {
 						System.out.println("Inside second if");
+						SuggestionGui sGui = new SuggestionGui(theInstance);
+						sGui.setVisible(true);
 						//dialogue box for suggestion
 						//sGui.setVisible(true);
 					}
