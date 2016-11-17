@@ -78,4 +78,6 @@ public abstract class Player {
 
 	public abstract BoardCell pickLocation(Set<BoardCell> targets);
 	
+	public abstract void createSuggestion(Board board);
+	
 }

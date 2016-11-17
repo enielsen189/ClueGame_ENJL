@@ -20,6 +20,7 @@ public class ControlPanelGUI extends JPanel{
 	private static int rollNumber;
 	static JTextField turnText = new JTextField(10);
 	static JTextField rollText = new  JTextField(10);
+	static JTextField resultText;
 	
 	public ControlPanelGUI(Board board) {
 		this.board = board;
@@ -53,7 +54,7 @@ public class ControlPanelGUI extends JPanel{
 		//GuessResult
 		JPanel guessResult = new JPanel();
 		JLabel resultLabel = new JLabel("Response");
-		JTextField resultText = new  JTextField(20);
+		resultText = new  JTextField(20);
 		guessResult.add(resultLabel);
 		guessResult.add(resultText);
 		guessResult.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
@@ -101,8 +102,15 @@ public class ControlPanelGUI extends JPanel{
 		//Update Text
 		turnText.setText(board.totalPlayers.get(playerIndex).getName());
 		rollText.setText(Integer.toString(rollNumber));
+
 		
 		//Take player turn
 		board.turn(rollNumber, playerIndex);
+		if (board.getCurrentShownCard() != null) {
+			resultText.setText(board.getCurrentShownCard().getName());
+		}
+		else {
+			resultText.setText("");
+		}
 	}
 }

@@ -51,7 +51,8 @@ public class Board extends JPanel implements MouseListener{
 	private Map<String, BoardCell> roomLabel = new HashMap<String, BoardCell>();
 	private ArrayList<String> roomList = new ArrayList<String>();
 	public ArrayList<Player> totalPlayers = new ArrayList<Player>();
-	private static int playerIndex = 0;
+	public static int playerIndex = 0;
+	private Card currentShownCard;
 	
 	public void setSolution(String person, String room, String weapon) {
 		solution.person = person;
@@ -529,6 +530,13 @@ public class Board extends JPanel implements MouseListener{
 		else {
 			calcTargets(totalPlayers.get(index).row, totalPlayers.get(index).column, roll);
 			totalPlayers.get(index).pickLocation(targets);
+			/*if (board[totalPlayers.get(index).row][totalPlayers.get(index).column].isDoorway()) {
+				totalPlayers.get(index).createSuggestion(this);
+				if (suggestion.getPerson() == solution.getPerson() && suggestion.getWeapon() == solution.getWeapon() && suggestion.getRoom() == solution.getRoom()) {
+					JOptionPane.showMessageDialog(null, totalPlayers.get(index).getName() + " has just won the game!", "Winner!", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+			}*/
 		}
 		repaint();
 	}
@@ -547,20 +555,9 @@ public class Board extends JPanel implements MouseListener{
 			
 				if (selection != null) {
 					totalPlayers.get(playerIndex).setLocation(selection.row, selection.column);
-					//System.out.println("Doorway" + totalPlayers.get(playerIndex).getLocation().isDoorway());
-					//System.out.println("Index" + playerIndex);//correct
-					//System.out.println("Location Row: " + totalPlayers.get(playerIndex).getLocation().row);//correct
-					//System.out.println("Location Column: " + totalPlayers.get(playerIndex).getLocation().column);//correct
-					System.out.println("Initial: " + board[totalPlayers.get(playerIndex).getRow()][totalPlayers.get(playerIndex).getColumn()].getInitial());
-					//if(totalPlayers.get(playerIndex).getLocation().initial != 'W') {
-						//System.out.println("Not a walkway");
-					//}
 					if(board[totalPlayers.get(playerIndex).getRow()][totalPlayers.get(playerIndex).getColumn()].isDoorway()) {
-						System.out.println("Inside second if");
 						SuggestionGui sGui = new SuggestionGui(theInstance);
 						sGui.setVisible(true);
-						//dialogue box for suggestion
-						//sGui.setVisible(true);
 					}
 					totalPlayers.get(playerIndex).isFinished = true;
 					for (BoardCell c: targets){
@@ -575,6 +572,14 @@ public class Board extends JPanel implements MouseListener{
 		else{
 			JOptionPane.showMessageDialog(null, "It is not your turn!", "Cannot select location!", JOptionPane.INFORMATION_MESSAGE);
 		}
+	}
+	
+	public void setCurrentShownCard(Card card) {
+		currentShownCard = card;
+	}
+	
+	public Card getCurrentShownCard() {
+		return currentShownCard;
 	}
 
 	@Override

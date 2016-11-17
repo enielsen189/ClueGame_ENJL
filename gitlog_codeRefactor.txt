@@ -1,0 +1,12 @@
+77850ae (HEAD -> master, origin/master) Changed loadBoardConfig and loadRoomConfig visibility back to public because CRaders tests depend on that
+c95d479 Edited pickLocation from the ComputerPlayer class to include a boolean to determine whether or not both doorsInRange are included in visitedRooms
+54b5df9 Changed the name of totalRooms to allLocations because the location a computer player could potentially end up at does not have to be a room, it could also be a walkway
+1316bb4 Changed the visibility of doorsInRange and totalRooms in ComputerPlayer from public to private since they are not used outside of the class
+87d1e5e Changed the name of resolution to solutionCheck in handleSuggestion() because resolution didn't make much sense as a variable name
+d251187 Changed the following functions from public to private...calcAdjacencies(), findAllTargets(), loadWeaponConfig(), loadPlayerConfig(), loadBoardConfig(), loadRoomConfig(), and convertColor()
+d95f509 Renamed x and y to column and row respectively in calcAdjacencies() in order to have it make more sense
+d13fa84 Renamed 'C1' to 'tempComputer' in the loadPlayerConfig() function because it didn't make sense to make a C1 every time and add it to the arraylist. They will not all be C1
+df08b56 for loadBoardConfig(), the Scanner in was never being closed, so I added the in.close() statement after the while loop
+113bdcb Added the methods in loadConfigFiles into initialize function to reduce function hopping
+7eb1834 Added comments explaining the different config files because we seem to have so many of them
+79070a3 New Repository with code

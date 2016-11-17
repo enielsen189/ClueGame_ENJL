@@ -1,0 +1,31 @@
+*****************************************BEFORE***************************************************************
+	public BoardCell pickLocation(Set<BoardCell> targets) {
+
+		else if(doorsInRange.size() > 1) {
+			if((visitedRooms.contains(doorsInRange.get(0)) && (visitedRooms.contains(doorsInRange.get(1))))) {
+				for (BoardCell c: targets) {
+					totalRooms.add(c);		//all targets should be in totalRooms
+				}
+			}
+******************************************AFTER****************************************************************
+	public BoardCell pickLocation(Set<BoardCell> targets) {
+		
+		
+		else if(doorsInRange.size() > 1) {		//if there is more than 1 door that the computer player can get through, check to see which ones have been visited before
+			boolean doesContain = true;
+			for (int i = 0; i < doorsInRange.size(); i++) {
+				if (visitedRooms.contains(doorsInRange.get(i))) {
+					//do nothing, continue through the loop
+				}
+				else {
+					doesContain = false;
+				}
+			}
+			if(doesContain) {	//if all of doorsInRange is included in visitedRooms, add all of the targets to allLocations
+				for (BoardCell c: targets) {
+					allLocations.add(c);		//if both rooms have been visited before, 
+				}
+			}
+
+*************************************************************************************COMMENTS******************************************************************************
+We changed the code to include a boolean in order to clean up the first else if statement to use a boolean instead of a messy if statement that is hard to read
