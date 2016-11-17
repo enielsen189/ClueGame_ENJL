@@ -65,6 +65,7 @@ public class ControlPanelGUI extends JPanel{
 		nextPlayerButton.addMouseListener(new NextPlayerListener());
 		masterPanel.add(nextPlayerButton);
 		JButton accusationButton = new JButton("Make an accusation");
+		accusationButton.addMouseListener(new AccusationListener());
 		masterPanel.add(accusationButton);
 		add(masterPanel);
 		
@@ -86,6 +87,23 @@ public class ControlPanelGUI extends JPanel{
 			}
 			else{
 				JOptionPane.showMessageDialog(null, "Select a valid location.", "Your turn is not over!", JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent arg0) {}
+	}
+	// Mouse click listening for accusation gui
+	class AccusationListener implements MouseListener{
+		public void mouseClicked(MouseEvent event) {
+			if(playerIndex != 0) {
+				JOptionPane.showMessageDialog(null, "It must be your turn to make an accusation.", "You shall not pass!", JOptionPane.INFORMATION_MESSAGE);
+			}
+			else {
+				AccusationGui aGui = new AccusationGui(board);
+				aGui.setVisible(true);
+				System.out.println("Mouse clicked Accusation Button");
 			}
 		}
 		public void mouseEntered(MouseEvent arg0) {}

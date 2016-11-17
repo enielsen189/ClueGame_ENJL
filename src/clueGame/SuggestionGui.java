@@ -94,13 +94,15 @@ public class SuggestionGui extends JDialog{
 		cancelButton = new JButton("Cancel");
 		cancelButton.addMouseListener(new CancelListener());
 		
-		add(panel);
+		
 		
 		panel.add(currentRoom);
 		panel.add(personGuessPanel);
 		panel.add(weaponGuessPanel);
 		panel.add(submitButton);
 		panel.add(cancelButton);
+		
+		add(panel);
 	}
 	
 	public Card getShownCard() {
