@@ -47,7 +47,7 @@ public class Board extends JPanel implements MouseListener{
 	public ArrayList<Card> weaponCards;
 	public Set<Card> dealtCards = new HashSet<Card>();
 	private static Solution solution = new Solution();
-	public Solution suggestion;
+	public Solution suggestion;   
 	private Map<String, BoardCell> roomLabel = new HashMap<String, BoardCell>();
 	private ArrayList<String> roomList = new ArrayList<String>();
 	public ArrayList<Player> totalPlayers = new ArrayList<Player>();
