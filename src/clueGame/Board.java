@@ -603,12 +603,11 @@ public class Board extends JPanel implements MouseListener{
 	}
 	
 	public Solution getCurrentSuggestion() {
-		System.out.println("Inside getCurrentSuggestion");
 		if (currentSuggestion == null) {
 			currentSuggestion = new Solution();
-			currentSuggestion.setPerson("No");
-			currentSuggestion.setWeapon(" Suggestion");
-			currentSuggestion.setRoom(" Made");
+			currentSuggestion.setPerson("");
+			currentSuggestion.setWeapon("");
+			currentSuggestion.setRoom("");
 		}
 		return currentSuggestion;
 	}

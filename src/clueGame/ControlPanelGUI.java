@@ -122,18 +122,25 @@ public class ControlPanelGUI extends JPanel{
 		//Update Text
 		turnText.setText(board.totalPlayers.get(playerIndex).getName());
 		rollText.setText(Integer.toString(rollNumber));
+
+		
+		//Take player turn
+		board.turn(rollNumber, playerIndex);
+		
 		if (board.getCurrentShownCard() != null) {
 			resultText.setText(board.getCurrentShownCard().getName());
 		}
 		else {
 			resultText.setText("");
+		} 
+		if (board.getCurrentSuggestion().getPerson() == "") {
+			suggestion = "";
 		}
-		suggestion = board.getCurrentSuggestion().getPerson() + ", " + board.getCurrentSuggestion().getWeapon() + ", " + board.getCurrentSuggestion().getRoom();
+		else {
+			suggestion = board.getCurrentSuggestion().getPerson() + ", " + board.getCurrentSuggestion().getWeapon() + ", " + board.getCurrentSuggestion().getRoom();
+		}
 		
 		guessText.setText(suggestion);
-		
-		//Take player turn
-		board.turn(rollNumber, playerIndex);
 
 	}
 }

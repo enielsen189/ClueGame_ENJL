@@ -126,15 +126,7 @@ public class SuggestionGui extends JDialog{
 				board.setCurrentShownCard(shownCard);
 			}
 			
-			if (guess == null) {
-				guess.setPerson("Blah");
-				guess.setWeapon("blah");
-				guess.setRoom("BLAH");
-				board.setCurrentSuggestion(guess);
-			}
-			else {
-				board.setCurrentSuggestion(guess);
-			}
+			board.setCurrentSuggestion(guess);
 			
 			dispose();
 			
