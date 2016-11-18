@@ -53,6 +53,8 @@ public class Board extends JPanel implements MouseListener{
 	public ArrayList<Player> totalPlayers = new ArrayList<Player>();
 	public static int playerIndex = 0;
 	private Card currentShownCard;
+	private Solution currentSuggestion;
+	private SuggestionGui sGui;
 	
 	public void setSolution(String person, String room, String weapon) {
 		solution.person = person;
@@ -451,7 +453,7 @@ public class Board extends JPanel implements MouseListener{
 	}
 	
 	public boolean checkAccusation(Solution accusation) {
-		if (accusation.person.equals(solution.person) && accusation.weapon.equals(solution.weapon) && accusation.room.equals(solution.room)){
+		if (accusation.getPerson().equals(solution.person) && accusation.getWeapon().equals(solution.weapon) && accusation.getRoom().equals(solution.room)){
 			return true;
 		}
 		else {
@@ -530,13 +532,17 @@ public class Board extends JPanel implements MouseListener{
 		else {
 			calcTargets(totalPlayers.get(index).row, totalPlayers.get(index).column, roll);
 			totalPlayers.get(index).pickLocation(targets);
-			/*if (board[totalPlayers.get(index).row][totalPlayers.get(index).column].isDoorway()) {
+			if (board[totalPlayers.get(index).row][totalPlayers.get(index).column].isDoorway()) {
 				totalPlayers.get(index).createSuggestion(this);
-				if (suggestion.getPerson() == solution.getPerson() && suggestion.getWeapon() == solution.getWeapon() && suggestion.getRoom() == solution.getRoom()) {
+				/*if (suggestion.getPerson() == solution.getPerson() && suggestion.getWeapon() == solution.getWeapon() && suggestion.getRoom() == solution.getRoom()) {
 					JOptionPane.showMessageDialog(null, totalPlayers.get(index).getName() + " has just won the game!", "Winner!", JOptionPane.INFORMATION_MESSAGE);
-				}
+				}*/
+				setCurrentSuggestion(suggestion);
+				Card c = new Card();
+				c = handleSuggestion(suggestion);
+				setCurrentShownCard(c);
 				
-			}*/
+			}
 		}
 		repaint();
 	}
@@ -556,7 +562,7 @@ public class Board extends JPanel implements MouseListener{
 				if (selection != null) {
 					totalPlayers.get(playerIndex).setLocation(selection.row, selection.column);
 					if(board[totalPlayers.get(playerIndex).getRow()][totalPlayers.get(playerIndex).getColumn()].isDoorway()) {
-						SuggestionGui sGui = new SuggestionGui(theInstance);
+						sGui = new SuggestionGui(theInstance);
 						sGui.setVisible(true);
 					}
 					totalPlayers.get(playerIndex).isFinished = true;
@@ -580,6 +586,24 @@ public class Board extends JPanel implements MouseListener{
 	
 	public Card getCurrentShownCard() {
 		return currentShownCard;
+	}
+	
+	public void setCurrentSuggestion(Solution s) {
+		//System.out.println("Inside setCurrentSuggestion");
+		//System.out.println("s: " + s.getPerson());
+		currentSuggestion = s;
+		//System.out.println("CurrentSuggestion: " + currentSuggestion.getPerson());
+	}
+	
+	public Solution getCurrentSuggestion() {
+		System.out.println("Inside getCurrentSuggestion");
+		if (currentSuggestion == null) {
+			currentSuggestion = new Solution();
+			currentSuggestion.setPerson("No");
+			currentSuggestion.setWeapon(" Suggestion");
+			currentSuggestion.setRoom(" Made");
+		}
+		return currentSuggestion;
 	}
 
 	@Override

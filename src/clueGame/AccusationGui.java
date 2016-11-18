@@ -115,10 +115,6 @@ public class AccusationGui extends JDialog{
 	}
 	class SubmitAccListener implements MouseListener{
 		public void mouseClicked(MouseEvent event) {
-			System.out.println("Button clicked for Accuasation Button Submit");
-			System.out.println("Person: " + personAccString);
-			System.out.println("Weapon: " + weaponAccString);
-			System.out.println("Room: " + roomAccString);
 			accusation = new Solution(personAccString, roomAccString, weaponAccString);
 			
 			if (board.checkAccusation(accusation) == true) {

@@ -20,7 +20,9 @@ public class ControlPanelGUI extends JPanel{
 	private static int rollNumber;
 	static JTextField turnText = new JTextField(10);
 	static JTextField rollText = new  JTextField(10);
+	static JTextField guessText;
 	static JTextField resultText;
+	private String suggestion;
 	
 	public ControlPanelGUI(Board board) {
 		this.board = board;
@@ -46,7 +48,7 @@ public class ControlPanelGUI extends JPanel{
 		//Guess
 		JPanel guess = new JPanel();
 		JLabel guessLabel = new JLabel("Guess");
-		JTextField guessText = new  JTextField(20);
+		guessText = new  JTextField(20);
 		guess.add(guessLabel);
 		guess.add(guessText);
 		guess.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
@@ -80,9 +82,9 @@ public class ControlPanelGUI extends JPanel{
 	class NextPlayerListener implements MouseListener{
 		public void mouseClicked(MouseEvent event) {
 			//Increment player index
-			playerIndex = (playerIndex + 1) % board.totalPlayers.size();
 			//Initiate turn
 			if(board.totalPlayers.get(0).isFinished){
+				playerIndex = (playerIndex + 1) % board.totalPlayers.size();
 				nextPlayer(board);
 			}
 			else{
@@ -120,15 +122,18 @@ public class ControlPanelGUI extends JPanel{
 		//Update Text
 		turnText.setText(board.totalPlayers.get(playerIndex).getName());
 		rollText.setText(Integer.toString(rollNumber));
-
-		
-		//Take player turn
-		board.turn(rollNumber, playerIndex);
 		if (board.getCurrentShownCard() != null) {
 			resultText.setText(board.getCurrentShownCard().getName());
 		}
 		else {
 			resultText.setText("");
 		}
+		suggestion = board.getCurrentSuggestion().getPerson() + ", " + board.getCurrentSuggestion().getWeapon() + ", " + board.getCurrentSuggestion().getRoom();
+		
+		guessText.setText(suggestion);
+		
+		//Take player turn
+		board.turn(rollNumber, playerIndex);
+
 	}
 }

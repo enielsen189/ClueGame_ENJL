@@ -114,6 +114,7 @@ public class SuggestionGui extends JDialog{
 			//submit the suggestion displayed
 			//handle suggestion
 			guess = new Solution(personString, roomString, weaponString);
+			
 			shownCard = board.handleSuggestion(guess);
 			
 			if (shownCard == null) {
@@ -123,6 +124,16 @@ public class SuggestionGui extends JDialog{
 			else {
 			
 				board.setCurrentShownCard(shownCard);
+			}
+			
+			if (guess == null) {
+				guess.setPerson("Blah");
+				guess.setWeapon("blah");
+				guess.setRoom("BLAH");
+				board.setCurrentSuggestion(guess);
+			}
+			else {
+				board.setCurrentSuggestion(guess);
 			}
 			
 			dispose();
