@@ -541,7 +541,14 @@ public class Board extends JPanel implements MouseListener{
 				Card c = new Card();
 				c = handleSuggestion(suggestion);
 				setCurrentShownCard(c);
-				
+				if (totalPlayers.get(index).timeToMakeAccusation == true) {
+					if (suggestion.getPerson() == solution.getPerson() && suggestion.getWeapon() == solution.getWeapon() && suggestion.getRoom() == solution.getRoom()) {
+						JOptionPane.showMessageDialog(null, totalPlayers.get(index).getName() + " has just won the game!", "Winner!", JOptionPane.INFORMATION_MESSAGE);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, totalPlayers.get(index).getName() + " has accused " + suggestion.getPerson() + " with the " + suggestion.getWeapon() + " in the " + suggestion.getRoom(), "Better Luck Next Time!", JOptionPane.INFORMATION_MESSAGE);
+					}
+				}
 			}
 		}
 		repaint();

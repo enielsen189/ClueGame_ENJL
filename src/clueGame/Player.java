@@ -17,6 +17,7 @@ public abstract class Player {
 	public int id;
 	private BoardCell location;
 	public Boolean isFinished = true;
+	public Boolean timeToMakeAccusation = false;
 	
 	public Card disproveSuggestion(Solution suggestion) {
 		ArrayList<Card> inHand = new ArrayList<Card>();

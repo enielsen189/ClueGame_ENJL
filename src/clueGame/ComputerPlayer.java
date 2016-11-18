@@ -11,8 +11,7 @@ public class ComputerPlayer extends Player {
 	public Set<Card> seenWeaponCards = new HashSet<Card>();
 	public Set<BoardCell> visitedRooms = new HashSet<BoardCell>();
 	private ArrayList<BoardCell> doorsInRange = new ArrayList<BoardCell>();
-	private ArrayList<BoardCell> allLocations = new ArrayList<BoardCell>();
-	
+	private ArrayList<BoardCell> allLocations = new ArrayList<BoardCell>();	
 	
 	public BoardCell pickLocation(Set<BoardCell> targets) {
 		doorsInRange.clear();
@@ -120,6 +119,9 @@ public class ComputerPlayer extends Player {
 				accusedWeapon = allNonSeenWeapons.get(rand.nextInt(allNonSeenWeapons.size()));
 			}
 			
+			if(allNonSeenWeapons.size() == 1 && allNonSeenPeople.size() == 1) {
+				timeToMakeAccusation = true;
+			}
 			board.suggestion = new Solution(accusedPerson, accusedRoom, accusedWeapon);
 		}
 	}

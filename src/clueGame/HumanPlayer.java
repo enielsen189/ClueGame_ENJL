@@ -9,4 +9,10 @@ public class HumanPlayer extends Player{
 		return null;
 	}
 
+	@Override
+	public void createSuggestion(Board board) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
