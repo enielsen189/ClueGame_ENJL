@@ -115,6 +115,16 @@ public class SuggestionGui extends JDialog{
 			//handle suggestion
 			guess = new Solution(personString, roomString, weaponString);
 			
+			// Move accused player to the the accuser's location
+			int movePlayerIndex = 0;
+			for(int i = 0; i<board.totalPlayers.size(); i++){
+				if(guess.getPerson().equals(board.totalPlayers.get(i).getName())){
+					movePlayerIndex = i;
+					break;
+				}
+			}
+			board.totalPlayers.get(movePlayerIndex).setLocation(board.totalPlayers.get(0).getRow(), board.totalPlayers.get(0).getColumn());
+			
 			shownCard = board.handleSuggestion(guess);
 			
 			if (shownCard == null) {

@@ -453,12 +453,16 @@ public class Board extends JPanel implements MouseListener{
 	}
 	
 	public boolean checkAccusation(Solution accusation) {
-		if (accusation.getPerson().equals(solution.person) && accusation.getWeapon().equals(solution.weapon) && accusation.getRoom().equals(solution.room)){
-			return true;
+		System.out.println(solution.person);
+		if(accusation != null){
+			if (accusation.getPerson().equals(solution.person) && accusation.getWeapon().equals(solution.weapon) && accusation.getRoom().equals(solution.room)){
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
-		else {
-			return false;
-		}
+		return false;
 	}
 	
 	public Map<Character, String> getLegend(){
@@ -538,6 +542,18 @@ public class Board extends JPanel implements MouseListener{
 					JOptionPane.showMessageDialog(null, totalPlayers.get(index).getName() + " has just won the game!", "Winner!", JOptionPane.INFORMATION_MESSAGE);
 				}*/
 				setCurrentSuggestion(suggestion);
+				
+				// Move accused player to the the accuser's location
+				int movePlayerIndex = 0;
+				for(int i = 0; i<totalPlayers.size(); i++){
+					if(suggestion.getPerson().equals(totalPlayers.get(i).getName())){
+						movePlayerIndex = i;
+						break;
+					}
+				}
+				totalPlayers.get(movePlayerIndex).setLocation(totalPlayers.get(index).getRow(), totalPlayers.get(index).getColumn());
+				
+				
 				Card c = new Card();
 				c = handleSuggestion(suggestion);
 				setCurrentShownCard(c);

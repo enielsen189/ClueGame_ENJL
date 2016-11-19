@@ -1,4 +1,10 @@
-0fe3a51 (HEAD -> master, origin/master) Cards in player hand now printed to gui
+cd0e706 (HEAD -> master, origin/master) Got all old tests to pass, modified Legend files.
+26609a4 Finished ClueGame1, tests don't pass.
+d615fcd Removed the humanNext and compNext functions in ControlPanel. Added single nextPlayer function. Cleaned up code. Fixed computer player movements.
+bc2e1a9 Added turn function in board, however all playes move but only around one location.
+b981c7c Added NextPlayerListener class to ClueGame.
+933544c Added some preliminary things for Game I
+0fe3a51 Cards in player hand now printed to gui
 4279a8b All gui written, not showing player cards gui
 783e454 Started gui to display seen cards
 cb1a8c8 Added new classes
